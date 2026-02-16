@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiment 5 - HTML Image Tags</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; padding: 20px; max-width: 800px; margin: auto; background-color: #f9f9f9; }
+        section { background: #fff; padding: 20px; margin-bottom: 30px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        img, canvas, svg, video, embed, object { max-width: 100%; height: auto; border-radius: 8px; display: block; margin-top: 10px; }
+        code { background: #f4f4f4; padding: 2px 5px; color: #d63384; }
+        h1 { color: #333; border-bottom: 2px solid #333; padding-bottom: 10px; }
+    </style>
+</head>
+<body>
+
+    <h1>HTML Image & Graphic Tag Variations</h1>
+    <div class="author-info">
+        <h3>Name : Maithili Sanjay Raut</h3>
+        <h4>Roll Number : 49</h4>
+        <h4>Experiment no - 5</h4>
+    </div>
+
+    <section>
+        <h2>1. Standard Image Tag (<code>&lt;img&gt;</code>)</h2>
+        <img src="https://picsum.photos/id/28/600/300" alt="A stable forest landscape">
+    </section>
+
+    <section>
+        <h2>2. Image with Caption (<code>&lt;figure&gt;</code>)</h2>
+
+        <figure>
+            <img src="https://picsum.photos/id/10/600/301" alt="Stable beach pier">
+            <figcaption>Figure 1: A calm pier over the ocean.</figcaption>
+        </figure>
+    </section>
+
+    <section>
+        <h2>3. Responsive Tag (<code>&lt;picture&gt;</code>)</h2>
+        <picture>
+            <source media="(min-width: 650px)" srcset="https://picsum.photos/id/1015/800/400">
+            <source media="(min-width: 465px)" srcset="https://picsum.photos/id/1016/400/200">
+            <img src="https://picsum.photos/id/1018/200/100" alt="Stable responsive mountains">
+        </picture>
+    </section>
+
+    <section>
+        <h2>4. Linked Image</h2>
+        <p>Makes the entire image clickable to navigate to a URL.</p>
+        <a href="https://google.com" target="_blank">
+            <img src="https://picsum.photos/id/1084/120/120" alt="Stable walrus logo">
+        </a>
+    </section>
+
+    <section>
+        <h2>5. Animated Image (GIF)</h2>
+        <p>Using the standard image tag to display motion graphics.</p>
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJueXN6Znd4Znd4Znd4Znd4Znd4Znd4Znd4Znd4Znd4Znd4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/3o7TKMGpxxS05G9S80/giphy.gif" alt="Flickering lightbulb" width="150">
+    </section>
+
+    <section>
+        <h2>6. Image Maps (<code>&lt;map&gt;</code>)</h2>
+        <map name="workmap">
+            <area shape="rect" coords="0,0,300,300" alt="Google" href="https://google.com">
+            <area shape="rect" coords="301,0,600,300" alt="YouTube" href="https://youtube.com">
+        </map>
+        <img src="https://picsum.photos/id/20/600/300" usemap="#workmap" alt="Click left for Google, right for YouTube">
+    </section>
+
+  <section>
+        <h2>7. Multimedia Container (<code>&lt;object&gt;</code>)</h2>
+        <p>A general container that can hold images or other external resources.</p>
+        <object data="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&h=300&fit=crop" type="image/jpeg" style="max-width: 100%;">
+            Your browser does not support this object.
+        </object>
+    </section>
+
+    <section>
+        <h2>8. Video Poster (<code>&lt;video poster="..."&gt;</code>)</h2>
+        <p>Displays a "placeholder" image until the video is played.</p>
+        <video width="400" controls poster="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=225&fit=crop" style="max-width: 100%;">
+            <source src="movie.mp4" type="video/mp4">
+            Your browser does not support video.
+        </video>
+    </section>
+</body>
+</html>
+
+
+ -->
+
+<!-- 
+ <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiment 5 - HTML Image Tags</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; padding: 20px; max-width: 800px; margin: auto; background-color: #f9f9f9; }
+        section { background: #fff; padding: 20px; margin-bottom: 30px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        
+        /* Updated style with simple border and padding */
+        img, canvas, svg, video, embed, object { 
+            max-width: 100%; 
+            height: auto; 
+            border-radius: 8px; 
+            display: block; 
+            margin-top: 10px;
+            border: 2px solid #333; /* The border you requested */
+            padding: 4px;           /* Adds a small gap between image and border */
+            background-color: #fff; /* Ensures the gap is white */
+        }
+        
+        code { background: #f4f4f4; padding: 2px 5px; color: #d63384; }
+        h1 { color: #333; border-bottom: 2px solid #333; padding-bottom: 10px; }
+    </style>
+</head>
+<body>
+
+    <h1>Experiment 5: Image Tag Examples</h1>
+
+    <h2>1. Standard Image</h2>
+    <img src="images/Standard image tag.png" alt="Standard Sample Image">
+
+    <h2>2. Image with Caption</h2>
+    <figure>
+        <img src="images/Image with Caption.png" alt="Image with Caption">
+        <figcaption>This is an example of an image with caption and a simple border.</figcaption>
+    </figure>
+
+    <h2>3. Responsive Image</h2>
+    <img src="images/Responsive Tag.png" alt="Responsive Image Example">
+ 
+    <h2>4. Image as a Link</h2>
+    <a href="https://www.google.com" target="_blank">
+        <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" alt="Click this image to open Google">
+    </a>
+
+    <h2>5. Animated Image (GIF)</h2>
+    <img src="https://media.giphy.com/media/ICOgUNjpvO0PC/giphy.gif" alt="Animated GIF" width="200">
+
+    <h2>7. Image Map</h2>
+    <img src="images/image maps.png" alt="Image Map Example" usemap="#imagemap">
+
+    <map name="imagemap">
+        <area shape="rect" coords="0,0,200,200" href="https://www.google.com" alt="Left Side">
+        <area shape="rect" coords="200,0,400,200" href="https://www.wikipedia.org" alt="Right Side">
+    </map>
+
+</body>
+</html>
