@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>HTML Links and Image Map Demo</title>
+</head>
+
+<body>
+
+<center>
+<h1>HTML Links and Image Map Demonstration</h1>
+</center>
+
+<hr>
+
+<!-- 1. Text Link -->
+<h2>1. Link Using Text</h2>
+
+<p>
+<a href="https://www.google.com">Open Google Website</a>
+</p>
+
+<hr>
+
+<!-- 2. Link Using Image -->
+<h2>2. Link Using Image</h2>
+
+<a href="https://www.wikipedia.org">
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/63/Wikipedia-logo.png" width="120">
+</a>
+
+<p>Click the Wikipedia logo.</p>
+
+<hr>
+
+<!-- 3. Image as Link -->
+<h2>3. Image as a Link</h2>
+
+<a href="https://www.youtube.com">
+<img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" width="180">
+</a>
+
+<p>Click the YouTube logo.</p>
+
+<hr>
+
+<!-- 4. Image Map -->
+<h2>4. Image Map (Desk Objects)</h2>
+
+<p>Click different objects on the desk.</p>
+
+<img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8"
+width="700" height="400" usemap="#deskmap">
+
+<map name="deskmap">
+
+<!-- Laptop -->
+<area shape="rect"
+coords="50,120,350,330"
+href="https://www.wikipedia.org"
+alt="Laptop">
+
+<!-- Notebook -->
+<area shape="rect"
+coords="380,150,520,330"
+href="https://www.google.com"
+alt="Notebook">
+
+<!-- Phone -->
+<area shape="rect"
+coords="540,160,630,310"
+href="https://www.github.com"
+alt="Phone">
+
+<!-- Coffee Cup -->
+<area shape="circle"
+coords="600,80,40"
+href="https://www.youtube.com"
+alt="Coffee Cup">
+
+</map>
+
+<hr>
+
+<!-- 5. Additional Image -->
+<h2>5. Desk Workspace Image</h2>
+
+<p>This image shows a clean workspace with laptop, notebook and coffee.</p>
+
+<img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7"
+width="700">
+
+<hr>
+
+</body>
+</html>
