@@ -1,0 +1,55 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Big Iframe Program</title>
+</head>
+<body>
+  <h1>I Frame Pro</h1>
+  <p>Select a site below to view inside the iframe:</p>
+
+  <!-- Navigation links -->
+  <ul>
+    <li><a href="https://www.wikipedia.org" target="mainFrame">Wikipedia</a></li>
+    <li><a href="https://www.youtube.com" target="mainFrame">YouTube</a></li>
+    <li><a href="https://www.google.com/maps" target="mainFrame">Google Maps</a></li>
+    <li><a href="https://www.example.com" target="mainFrame">Example.com</a></li>
+  </ul>
+
+  <!-- Main iframe -->
+  <iframe name="mainFrame" src="https://www.wikipedia.org" width="800" height="500"></iframe>
+
+  <hr>
+
+  <!-- Multiple iframes for dashboard-style view -->
+  <h2>Dashboard View</h2>
+  <table border="1" width="100%">
+    <tr>
+      <td>
+        <h3>Wikipedia</h3>
+        <iframe src="https://www.wikipedia.org" width="400" height="300"></iframe>
+      </td>
+      <td>
+        <h3>YouTube</h3>
+        <iframe src="https://www.youtube.com" width="400" height="300"></iframe>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <h3>Google Maps</h3>
+        <iframe src="https://www.google.com/maps" width="400" height="300"></iframe>
+      </td>
+      <td>
+        <h3>Example.com</h3>
+        <iframe src="https://www.example.com" width="400" height="300"></iframe>
+      </td>
+    </tr>
+  </table>
+
+  <hr>
+
+  
+</body>
+</html>  
