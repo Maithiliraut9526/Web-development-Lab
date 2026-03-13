@@ -1,95 +1,65 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>HTML Links and Image Map Demo</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Interactive Web Elements</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', sans-serif; 
+            line-height: 1.6; 
+            max-width: 800px; 
+            margin: 0 auto; 
+            padding: 40px 20px; 
+            background-color: #f4f7f6;
+        }
+        section { 
+            background: white; 
+            padding: 20px; 
+            margin-bottom: 30px; 
+            border-radius: 8px; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+        }
+        h2 { color: #2c3e50; margin-top: 0; }
+        img { display: block; border-radius: 4px; max-width: 100%; height: auto; }
+        area { cursor: pointer; }
+    </style>
 </head>
-
 <body>
 
-<center>
-<h1>HTML Links and Image Map Demonstration</h1>
-</center>
+    <h1 style="text-align: center;">Web Linking Demonstration</h1>
 
-<hr>
+    <section>
+        <h2>1. Professional Text Link</h2>
+        <p>Access the search engine directly: 
+            <a href="https://www.google.com" target="_blank" rel="noopener" style="color: #3498db; font-weight: bold;">Visit Google</a>
+        </p>
+    </section>
 
-<!-- 1. Text Link -->
-<h2>1. Link Using Text</h2>
+    <section>
+        <h2>2. Branded Image Link</h2>
+        <a href="https://www.youtube.com" target="_blank" rel="noopener">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="YouTube" width="150">
+        </a>
+    </section>
 
-<p>
-<a href="https://www.google.com">Open Google Website</a>
-</p>
+    <section>
+        <h2>3. Interactive Workspace (Image Map)</h2>
+        <p>Click the <strong>Laptop</strong> for Wikipedia, the <strong>Notebook</strong> for Google, or the <strong>Coffee</strong> for YouTube.</p>
+        
+        <div style="position: relative;">
+            <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7" 
+                 width="700" height="467" usemap="#workspacemap" alt="Desk Workspace">
 
-<hr>
-
-<!-- 2. Link Using Image -->
-<h2>2. Link Using Image</h2>
-
-<a href="https://www.wikipedia.org">
-<img src="https://upload.wikimedia.org/wikipedia/commons/6/63/Wikipedia-logo.png" width="120">
-</a>
-
-<p>Click the Wikipedia logo.</p>
-
-<hr>
-
-<!-- 3. Image as Link -->
-<h2>3. Image as a Link</h2>
-
-<a href="https://www.youtube.com">
-<img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" width="180">
-</a>
-
-<p>Click the YouTube logo.</p>
-
-<hr>
-
-<!-- 4. Image Map -->
-<h2>4. Image Map (Desk Objects)</h2>
-
-<p>Click different objects on the desk.</p>
-
-<img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8"
-width="700" height="400" usemap="#deskmap">
-
-<map name="deskmap">
-
-<!-- Laptop -->
-<area shape="rect"
-coords="50,120,350,330"
-href="https://www.wikipedia.org"
-alt="Laptop">
-
-<!-- Notebook -->
-<area shape="rect"
-coords="380,150,520,330"
-href="https://www.google.com"
-alt="Notebook">
-
-<!-- Phone -->
-<area shape="rect"
-coords="540,160,630,310"
-href="https://www.github.com"
-alt="Phone">
-
-<!-- Coffee Cup -->
-<area shape="circle"
-coords="600,80,40"
-href="https://www.youtube.com"
-alt="Coffee Cup">
-
-</map>
-
-<hr>
-
-<!-- 5. Additional Image -->
-<h2>5. Desk Workspace Image</h2>
-
-<p>This image shows a clean workspace with laptop, notebook and coffee.</p>
-
-<img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7"
-width="700">
-
-<hr>
+            <map name="workspacemap">
+                <area shape="rect" coords="50,180,440,420" href="https://www.wikipedia.org" target="_blank" alt="Wikipedia">
+                
+                <area shape="rect" coords="450,200,680,450" href="https://www.google.com" target="_blank" alt="Google Search">
+                
+                <area shape="circle" coords="610,100,55" href="https://www.youtube.com" target="_blank" alt="YouTube">
+            </map>
+        </div>
+    </section>
 
 </body>
 </html>
