@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Admission Portal | Official Enrollment</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+    <br><br>
+
+    <center>
+        <table width="650" border="1" cellpadding="0" cellspacing="0" bordercolor="#000000">
+            <tr>
+                <td>
+                    
+                    <table width="100%" border="0" cellpadding="20" cellspacing="0">
+                        <tr>
+                            <td align="center">
+                                <font face="Verdana" size="6"><b>OFFICIAL ENROLLMENT FORM</b></font><br>
+                                <font face="Verdana" size="2">Academic Year 2026-2027</font>
+                                <hr width="70%">
+                            </td>
+                        </tr>
+                    </table>
+
+                    <form action="/submit" method="post" enctype="multipart/form-data">
+                        
+                        <table width="100%" border="0" cellpadding="12" cellspacing="0">
+                            
+                            <tr bgcolor="#EEEEEE">
+                                <td colspan="2"><font face="Verdana" size="3"><b>I. APPLICANT IDENTITY</b></font></td>
+                            </tr>
+                            <tr>
+                                <td width="40%"><font face="Verdana" size="2">Legal Full Name:</font></td>
+                                <td><input type="text" name="fname" size="35" placeholder="As per high school records" required></td>
+                            </tr>
+                            <tr>
+                                <td><font face="Verdana" size="2">University Email:</font></td>
+                                <td><input type="email" name="u_email" size="35" placeholder="example@university.edu" required></td>
+                            </tr>
+                            <tr>
+                                <td><font face="Verdana" size="2">Date of Birth:</font></td>
+                                <td><input type="date" name="dob" required></td>
+                            </tr>
+                            <tr>
+                                <td><font face="Verdana" size="2">Gender Identity:</font></td>
+                                <td>
+                                    <input type="radio" name="gender" value="m"> <font face="Verdana" size="2">Male</font>
+                                    <input type="radio" name="gender" value="f"> <font face="Verdana" size="2">Female</font>
+                                    <input type="radio" name="gender" value="o"> <font face="Verdana" size="2">Other</font>
+                                </td>
+                            </tr>
+
+                            <tr bgcolor="#EEEEEE">
+                                <td colspan="2"><font face="Verdana" size="3"><b>II. ACADEMIC PREFERENCE</b></font></td>
+                            </tr>
+                            <tr>
+                                <td><font face="Verdana" size="2">Primary Department:</font></td>
+                                <td>
+                                    <select name="dept" style="width: 250px;">
+                                        <option value="">-- Select Department --</option>
+                                        <option value="cs">Computer Science Engineering</option>
+                                        <option value="it">Information Technology</option>
+                                        <option value="ai">Artificial Intelligence & ML</option>
+                                        <option value="mech">Mechanical Engineering</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><font face="Verdana" size="2">Technical Focus Area:</font></td>
+                                <td>
+                                    <input type="checkbox" name="skill1"> <font face="Verdana" size="2">Web Technologies</font><br>
+                                    <input type="checkbox" name="skill2"> <font face="Verdana" size="2">Data Structures & Algo</font>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><font face="Verdana" size="2">Upload Profile Photo:</font></td>
+                                <td><input type="file" name="profile_pic"></td>
+                            </tr>
+
+                            <tr bgcolor="#EEEEEE">
+                                <td colspan="2"><font face="Verdana" size="3"><b>III. COMMUNICATION</b></font></td>
+                            </tr>
+                            <tr>
+                                <td valign="top"><font face="Verdana" size="2">Permanent Address:</font></td>
+                                <td><textarea name="address" rows="4" cols="33" placeholder="Street, City, Zip Code"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><font face="Verdana" size="2">Contact Number:</font></td>
+                                <td><input type="tel" name="phone" placeholder="+91 XXXXX XXXXX"></td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2" align="center">
+                                    <br><hr>
+                                    <input type="checkbox" name="confirm" required> 
+                                    <font face="Verdana" size="2">I certify that the information provided is accurate.</font>
+                                    <br><br>
+                                    <input type="submit" value="REGISTER APPLICANT" style="padding: 10px 20px; cursor: pointer; font-weight: bold;">
+                                    &nbsp;
+                                    <input type="reset" value="CLEAR FORM" style="padding: 10px 20px; cursor: pointer;">
+                                    <br><br>
+                                </td>
+                            </tr>
+
+                        </table>
+                    </form>
+
+                </td>
+            </tr>
+        </table>
+
+        <p><font face="Verdana" size="2">Already Registered? <a href="#">Login to Dashboard</a></font></p>
+
+    </center>
+
+</body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Structured Student Registration</title>
+</head>
+<body>
+
+    <br><br>
+
+    <center>
+        <table width="600" border="1" cellpadding="20" cellspacing="0">
+            <tr>
+                <td>
+                    
+                    <center>
+                        <h2>STUDENT ENROLLMENT FORM</h2>
+                        <hr width="50%">
+                    </center>
+
+                    <form action="/submit" method="post">
+                        
+                        <table width="100%" border="0" cellpadding="8" cellspacing="0">
+                            
+                            <tr>
+                                <td colspan="2"><b>I. Personal Information</b></td>
+                            </tr>
+                            <tr>
+                                <td width="40%">Full Name:</td>
+                                <td><input type="text" name="fname" size="30" required></td>
+                            </tr>
+                            <tr>
+                                <td>Email Address:</td>
+                                <td><input type="email" name="u_email" size="30" required></td>
+                            </tr>
+                            <tr>
+                                <td>Gender:</td>
+                                <td>
+                                    <input type="radio" name="gender" value="m"> Male
+                                    <input type="radio" name="gender" value="f"> Female
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2"><br><b>II. Academic Details</b></td>
+                            </tr>
+                            <tr>
+                                <td>Department:</td>
+                                <td>
+                                    <select name="dept">
+                                        <option value="cs">Computer Science</option>
+                                        <option value="it">Information Technology</option>
+                                        <option value="mech">Mechanical</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Interests:</td>
+                                <td>
+                                    <input type="checkbox" name="skill1"> Programming
+                                    <input type="checkbox" name="skill2"> Research
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2"><br><b>III. Communication</b></td>
+                            </tr>
+                            <tr>
+                                <td valign="top">Address:</td>
+                                <td><textarea name="address" rows="3" cols="28"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td>City:</td>
+                                <td><input type="text" name="city"></td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2" align="center">
+                                    <br>
+                                    <hr>
+                                    <input type="checkbox" name="confirm" required> 
+                                    I confirm all details are correct.
+                                    <br><br>
+                                    <input type="submit" value="Register Now">
+                                    &nbsp;
+                                    <input type="reset" value="Clear Form">
+                                </td>
+                            </tr>
+
+                        </table>
+                        </form>
+
+                </td>
+            </tr>
+        </table>
+
+        <p>Already Registered? <a href="#">Click here to Login</a></p>
+
+    </center>
+
+</body>
+</html> -->
