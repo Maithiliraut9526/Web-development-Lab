@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Development Lab - Experiments Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Background animation */
+        body::before {
+            content: '';
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            top: -100px;
+            left: -100px;
+            animation: float 6s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 50%;
+            bottom: -50px;
+            right: -50px;
+            animation: float 8s ease-in-out infinite reverse;
+            z-index: 0;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(20px); }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header Section */
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header-title {
+            color: white;
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            letter-spacing: -1px;
+        }
+
+        .header-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-bottom: 30px;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            animation: fadeIn 0.8s ease-out 0.2s both;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Filter Buttons */
+        .filter-section {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+            animation: fadeIn 0.8s ease-out 0.3s both;
+        }
+
+        .filter-btn {
+            padding: 10px 25px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: white;
+            color: #667eea;
+            border-color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Experiments Grid */
+        .experiments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .experiment-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            animation: scaleIn 0.6s ease-out both;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .experiment-card:nth-child(1) { animation-delay: 0.1s; }
+        .experiment-card:nth-child(2) { animation-delay: 0.2s; }
+        .experiment-card:nth-child(3) { animation-delay: 0.3s; }
+        .experiment-card:nth-child(4) { animation-delay: 0.4s; }
+        .experiment-card:nth-child(5) { animation-delay: 0.5s; }
+        .experiment-card:nth-child(n+6) { animation-delay: 0.6s; }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .experiment-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 60px rgba(102, 126, 234, 0.3);
+        }
+
+        .experiment-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+            animation: slideRight 0.8s ease-out;
+        }
+
+        @keyframes slideRight {
+            from {
+                transform: translateX(-100%);
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            z-index: 2;
+        }
+
+        .card-icon {
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-icon::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translate(-100%, -100%);
+            }
+            100% {
+                transform: translate(100%, 100%);
+            }
+        }
+
+        .card-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .experiment-number {
+            color: #667eea;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .experiment-title {
+            color: #333;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .experiment-description {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 15px;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .tags {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: #f0f0f0;
+            color: #667eea;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .open-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .open-btn:hover {
+            transform: translateX(4px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            animation: fadeIn 0.3s ease;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            width: 90vw;
+            height: 85vh;
+            max-width: 1200px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.4s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .close-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            height: calc(85vh - 70px);
+            overflow-y: auto;
+            padding: 0;
+        }
+
+        .iframe-container {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Scrollbar styling */
+        .modal-body::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .modal-body::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .modal-body::-webkit-scrollbar-thumb {
+            background: #667eea;
+            border-radius: 4px;
+        }
+
+        .modal-body::-webkit-scrollbar-thumb:hover {
+            background: #764ba2;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+            padding: 40px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeIn 0.8s ease-out 0.4s both;
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-title {
+                font-size: 2.5rem;
+            }
+
+            .experiments-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                width: 95vw;
+                height: 90vh;
+            }
+
+            .stats {
+                gap: 20px;
+            }
+        }
+
+        /* Loading animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: white;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1 class="header-title">Web Development Lab</h1>
+            <p class="header-subtitle">Experiments Hub - Interactive Learning Platform</p>
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-number">12</span>
+                    <span class="stat-label">Experiments</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Complete</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">Live</span>
+                    <span class="stat-label">Preview</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Filter Section -->
+        <div class="filter-section">
+            <button class="filter-btn active" onclick="filterExperiments('all')">
+                <i class="fas fa-th"></i> All
+            </button>
+            <button class="filter-btn" onclick="filterExperiments('html')">
+                <i class="fas fa-code"></i> HTML
+            </button>
+            <button class="filter-btn" onclick="filterExperiments('form')">
+                <i class="fas fa-wpforms"></i> Forms
+            </button>
+            <button class="filter-btn" onclick="filterExperiments('css')">
+                <i class="fas fa-palette"></i> Styling
+            </button>
+        </div>
+
+        <!-- Experiments Grid -->
+        <div class="experiments-grid" id="experimentsGrid"></div>
+
+        <!-- Modal -->
+        <div class="modal" id="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="modalTitle">Experiment</h2>
+                    <button class="close-btn" onclick="closeModal()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <iframe id="iframe" class="iframe-container"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p><strong>Maithili Sanjay Raut</strong> | Computer Science & Engineering</p>
+            <p>D. Y. Patil College of Engineering & Technology, Kolhapur</p>
+            <div class="footer-links">
+                <a href="https://github.com" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="mailto:maithili@example.com"><i class="fas fa-envelope"></i> Email</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Experiments Data
+        const experiments = [
+            {
+                id: 2,
+                title: "HTML Semantics & Basics",
+                description: "Learn HTML semantic elements and basic page structure",
+                file: "Experiment_No2.html",
+                icon: "fa-cube",
+                tags: ["HTML", "Basics"],
+                category: "html"
+            },
+            {
+                id: 3,
+                title: "HTML Document Structure",
+                description: "Understanding proper HTML document structure and hierarchy",
+                file: "Experiment_No3.html",
+                icon: "fa-layer-group",
+                tags: ["HTML", "Structure"],
+                category: "html"
+            },
+            {
+                id: 5,
+                title: "Image & Graphic Tags",
+                description: "Explore various image and graphic elements in HTML",
+                file: "Experiment_No.5.html",
+                icon: "fa-image",
+                tags: ["HTML", "Media"],
+                category: "html"
+            },
+            {
+                id: 6,
+                title: "Audio & Video Tags",
+                description: "Working with multimedia elements in HTML5",
+                file: "Experiment_no.6.html",
+                icon: "fa-film",
+                tags: ["HTML", "Media"],
+                category: "html"
+            },
+            {
+                id: 7,
+                title: "HTML Lists",
+                description: "Master ordered, unordered, and description lists",
+                file: "Experiment_No.7.html",
+                icon: "fa-list",
+                tags: ["HTML", "Lists"],
+                category: "html"
+            },
+            {
+                id: 8,
+                title: "HTML Tables",
+                description: "Create and format data tables with HTML",
+                file: "Experiment_No.8.html",
+                icon: "fa-table",
+                tags: ["HTML", "Tables"],
+                category: "html"
+            },
+            {
+                id: 9,
+                title: "HTML Forms",
+                description: "Build interactive forms with various input types",
+                file: "Experiment no - 9/Registration_form.html",
+                icon: "fa-wpforms",
+                tags: ["Forms", "Interactive"],
+                category: "form"
+            },
+            {
+                id: 10,
+                title: "CSS Professional Resume",
+                description: "Professional resume design with advanced CSS styling",
+                file: "Experiment_No - 10/index.html",
+                icon: "fa-file-pdf",
+                tags: ["CSS", "Design"],
+                category: "css"
+            },
+            {
+                id: 11,
+                title: "CSS Layouts & Flexbox",
+                description: "Master CSS Flexbox and modern layout techniques",
+                file: "Experiment_No - 11/index.html",
+                icon: "fa-columns",
+                tags: ["CSS", "Layout"],
+                category: "css"
+            },
+            {
+                id: 12,
+                title: "CSS Grid & Responsive",
+                description: "Advanced CSS Grid and responsive design principles",
+                file: "Experiment_No - 12/index.html",
+                icon: "fa-th-large",
+                tags: ["CSS", "Responsive"],
+                category: "css"
+            },
+            {
+                id: 4,
+                title: "HTML Lists Advanced",
+                description: "Advanced list structures and nesting techniques",
+                file: "Experimente 4/unordered_list.html",
+                icon: "fa-list-ul",
+                tags: ["HTML", "Lists"],
+                category: "html"
+            }
+        ];
+
+        // DOM Elements
+        const experimentsGrid = document.getElementById('experimentsGrid');
+        const modal = document.getElementById('modal');
+        const iframe = document.getElementById('iframe');
+        const modalTitle = document.getElementById('modalTitle');
+
+        // Render Experiments
+        function renderExperiments(data) {
+            experimentsGrid.innerHTML = '';
+            if (data.length === 0) {
+                experimentsGrid.innerHTML = '<div class="no-results" style="grid-column: 1 / -1;">No experiments found</div>';
+                return;
+            }
+
+            data.forEach((exp, index) => {
+                const card = document.createElement('div');
+                card.className = 'experiment-card';
+                card.style.animationDelay = `${index * 0.1}s`;
+                card.innerHTML = `
+                    <div class="card-badge">Exp #${exp.id}</div>
+                    <div class="card-icon" style="color: #667eea;">
+                        <i class="fas ${exp.icon}"></i>
+                    </div>
+                    <div class="card-content">
+                        <div class="experiment-number">Experiment ${exp.id}</div>
+                        <h3 class="experiment-title">${exp.title}</h3>
+                        <p class="experiment-description">${exp.description}</p>
+                        <div class="card-footer">
+                            <div class="tags">
+                                ${exp.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                            </div>
+                            <button class="open-btn" onclick="openExperiment('${exp.file}', '${exp.title}')">
+                                <i class="fas fa-external-link-alt"></i> View
+                            </button>
+                        </div>
+                    </div>
+                `;
+                experimentsGrid.appendChild(card);
+            });
+        }
+
+        // Filter Experiments
+        function filterExperiments(category) {
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            if (category === 'all') {
+                renderExperiments(experiments);
+            } else {
+                const filtered = experiments.filter(exp => exp.category === category);
+                renderExperiments(filtered);
+            }
+        }
+
+        // Open Experiment
+        function openExperiment(file, title) {
+            modalTitle.textContent = title;
+            iframe.src = file;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close Modal
+        function closeModal() {
+            modal.classList.remove('active');
+            iframe.src = '';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal on background click
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Initial render
+        renderExperiments(experiments);
+    </script>
+</body>
+</html>
