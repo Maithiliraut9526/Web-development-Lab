@@ -1,0 +1,94 @@
+/* General Layout */
+library {
+    display: block;
+    background-color: #eef2f3;
+    padding: 50px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Book Card Design */
+book {
+    display: block;
+    background-color: #ffffff;
+    margin-bottom: 30px;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-left: 10px solid #2c3e50;
+}
+
+/* Category-specific Colors */
+book[category="Science"] { border-left-color: #27ae60; }
+book[category="Fiction"] { border-left-color: #e67e22; }
+book[category="Technology"] { border-left-color: #2980b9; }
+book[category="History"] { border-left-color: #8e44ad; }
+book[category="Biography"] { border-left-color: #f1c40f; }
+
+/* Metadata (ID and Status) */
+book::before {
+    content: "ID: " attr(id) " | Status: " attr(status);
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    color: #95a5a6;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+/* Typography */
+title {
+    display: block;
+    font-size: 26px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+author {
+    display: block;
+    font-style: italic;
+    color: #555;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+/* Grouped Details Sections */
+publication, details {
+    display: block;
+    background: #f9f9f9;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+publisher::before { content: "Publisher: "; font-weight: bold; }
+year::before { content: "Year: "; font-weight: bold; }
+language::before { content: "Language: "; font-weight: bold; }
+stock::before { content: "Stock Available: "; font-weight: bold; }
+
+/* Pricing and Ratings */
+price {
+    display: inline-block;
+    background: #2c3e50;
+    color: #fff;
+    padding: 5px 15px;
+    border-radius: 15px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+price::after {
+    content: " (" attr(currency) ")";
+    font-size: 12px;
+}
+
+rating {
+    display: block;
+    margin-top: 10px;
+    color: #f39c12;
+    font-weight: bold;
+}
+
+rating::before {
+    content: "★ Rating: ";
+}

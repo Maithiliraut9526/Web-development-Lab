@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="student_app.xsl"?>
+<university>
+    <!-- Student 1: High Performer -->
+    <student id="S101" status="Regular">
+        <bio>
+            <name>Alex Johnson</name>
+            <email>alex.j@uni.edu</email>
+        </bio>
+        <academic>
+            <dept>Computer Science</dept>
+            <score>88</score>
+            <attendance>95</attendance>
+        </academic>
+    </student>
+
+    <!-- Student 2: Needs Improvement -->
+    <student id="S102" status="Probation">
+        <bio>
+            <name>Maria Garcia</name>
+            <email>maria.g@uni.edu</email>
+        </bio>
+        <academic>
+            <dept>Mechanical Engineering</dept>
+            <score>32</score>
+            <attendance>65</attendance>
+        </academic>
+    </student>
+
+    <!-- Student 3: Average Performer -->
+    <student id="S103" status="Regular">
+        <bio>
+            <name>Liam Smith</name>
+            <email>liam.s@uni.edu</email>
+        </bio>
+        <academic>
+            <dept>Information Technology</dept>
+            <score>55</score>
+            <attendance>82</attendance>
+        </academic>
+    </student>
+</university>

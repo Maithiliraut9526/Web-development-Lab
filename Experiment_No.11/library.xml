@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="style.css"?>
+<library>
+    <!-- Record 1: Science -->
+    <book category="Science" id="B001" status="available">
+        <title>The Origin of Species</title>
+        <author>Charles Darwin</author>
+        <publication>
+            <publisher>John Murray</publisher>
+            <year>1859</year>
+            <edition>1st</edition>
+        </publication>
+        <details>
+            <language>English</language>
+            <stock>12</stock>
+        </details>
+        <price currency="USD">15.99</price>
+        <rating>4.8</rating>
+    </book>
+    
+    <!-- Record 2: Fiction -->
+    <book category="Fiction" id="B002" status="borrowed">
+        <title>1984</title>
+        <author>George Orwell</author>
+        <publication>
+            <publisher>Secker &amp; Warburg</publisher>
+            <year>1949</year>
+            <edition>Reprint</edition>
+        </publication>
+        <details>
+            <language>English</language>
+            <stock>0</stock>
+        </details>
+        <price currency="GBP">12.50</price>
+        <rating>4.9</rating>
+    </book>
+
+    <!-- Record 3: Technology -->
+    <book category="Technology" id="B003" status="available">
+        <title>Clean Code</title>
+        <author>Robert C. Martin</author>
+        <publication>
+            <publisher>Prentice Hall</publisher>
+            <year>2008</year>
+            <edition>1st</edition>
+        </publication>
+        <details>
+            <language>English</language>
+            <stock>5</stock>
+        </details>
+        <price currency="USD">42.00</price>
+        <rating>4.7</rating>
+    </book>
+
+    <!-- Record 4: History -->
+    <book category="History" id="B004" status="available">
+        <title>Sapiens: A Brief History of Humankind</title>
+        <author>Yuval Noah Harari</author>
+        <publication>
+            <publisher>Harper</publisher>
+            <year>2011</year>
+            <edition>International</edition>
+        </publication>
+        <details>
+            <language>Hebrew/English</language>
+            <stock>18</stock>
+        </details>
+        <price currency="EUR">18.90</price>
+        <rating>4.8</rating>
+    </book>
+
+    <!-- Record 5: Biography -->
+    <book category="Biography" id="B005" status="borrowed">
+        <title>Steve Jobs</title>
+        <author>Walter Isaacson</author>
+        <publication>
+            <publisher>Simon &amp; Schuster</publisher>
+            <year>2011</year>
+            <edition>Hardcover</edition>
+        </publication>
+        <details>
+            <language>English</language>
+            <stock>0</stock>
+        </details>
+        <price currency="USD">30.00</price>
+        <rating>4.6</rating>
+    </book>
+</library>
