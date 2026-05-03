@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="inventory_style.xsl"?>
+<inventory>
+    <product category="Electronics">
+        <id>P-501</id>
+        <name>Wireless Headphones</name>
+        <price currency="USD">120</price>
+        <stock>5</stock>
+    </product>
+    <product category="Accessories">
+        <id>P-502</id>
+        <name>Mechanical Keyboard</name>
+        <price currency="USD">85</price>
+        <stock>25</stock>
+    </product>
+    <product category="Electronics">
+        <id>P-503</id>
+        <name>Smart Watch</name>
+        <price currency="USD">210</price>
+        <stock>2</stock>
+    </product>
+</inventory>

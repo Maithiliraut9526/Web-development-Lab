@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Development Lab - Experiments Hub</title>
+    <title>Web Development Lab</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -15,7 +15,9 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.18), transparent 18%),
+                        radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.12), transparent 22%),
+                        linear-gradient(135deg, #0f1d4d 0%, #402a81 45%, #6f4bef 100%);
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
@@ -93,6 +95,8 @@
             font-size: 1.2rem;
             font-weight: 300;
             margin-bottom: 30px;
+            opacity: 0;
+            animation: fadeIn 0.9s ease-out 0.15s both;
         }
 
         .stats {
@@ -110,7 +114,7 @@
             border-radius: 12px;
             border: 1px solid rgba(255, 255, 255, 0.2);
             color: white;
-            animation: fadeIn 0.8s ease-out 0.2s both;
+            animation: fadeIn 0.8s ease-out 0.2s both, pulse 8s ease-in-out 3s infinite;
         }
 
         .stat-number {
@@ -138,56 +142,82 @@
         /* Filter Buttons */
         .filter-section {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
+            align-items: center;
             gap: 15px;
             margin-bottom: 50px;
             flex-wrap: wrap;
             animation: fadeIn 0.8s ease-out 0.3s both;
         }
 
-        .filter-btn {
-            padding: 10px 25px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            background: rgba(255, 255, 255, 0.1);
+        .filter-btn,
+        .search-input {
+            padding: 12px 22px;
+            border-radius: 999px;
+            border: 2px solid rgba(255, 255, 255, 0.24);
+            background: rgba(255, 255, 255, 0.12);
             color: white;
-            border-radius: 25px;
-            cursor: pointer;
             font-weight: 600;
             font-size: 0.95rem;
             transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(14px);
+        }
+
+        .search-input {
+            min-width: 260px;
+            max-width: 360px;
+            width: 100%;
+            transition: all 0.35s ease;
+        }
+
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        .search-input:focus {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.45);
+            outline: none;
+            box-shadow: 0 0 28px rgba(255, 255, 255, 0.18);
         }
 
         .filter-btn:hover,
         .filter-btn.active {
             background: white;
-            color: #667eea;
+            color: #4f6ffe;
             border-color: white;
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 14px 35px rgba(0, 0, 0, 0.18);
         }
 
         /* Experiments Grid */
         .experiments-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
             margin-bottom: 60px;
         }
 
         .experiment-card {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 22px;
             overflow: hidden;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+            box-shadow: 0 20px 50px rgba(18, 30, 82, 0.08);
             animation: scaleIn 0.6s ease-out both;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.18);
             position: relative;
             height: 100%;
             display: flex;
             flex-direction: column;
+            backdrop-filter: blur(8px);
+        }
+
+        .experiment-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 30px 70px rgba(31, 44, 122, 0.18);
+            border-color: rgba(255, 255, 255, 0.35);
         }
 
         .experiment-card:nth-child(1) { animation-delay: 0.1s; }
@@ -233,6 +263,27 @@
             }
         }
 
+        @keyframes floatIcon {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-6px) scale(1.02); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+
+        @keyframes floatIn {
+            from {
+                opacity: 0;
+                transform: translateY(12px) scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
         .card-badge {
             position: absolute;
             top: 15px;
@@ -250,8 +301,8 @@
 
         .card-icon {
             width: 100%;
-            height: 150px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 160px;
+            background: linear-gradient(135deg, #4f6ffe 0%, #7d4bff 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -259,6 +310,12 @@
             font-size: 3rem;
             position: relative;
             overflow: hidden;
+            animation: floatIcon 5s ease-in-out infinite;
+        }
+
+        .card-icon i {
+            position: relative;
+            z-index: 1;
         }
 
         .card-icon::before {
@@ -349,11 +406,12 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            animation: floatIn 0.8s ease-out 0.5s both;
         }
 
         .open-btn:hover {
-            transform: translateX(4px);
-            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+            transform: translateX(4px) scale(1.02);
+            box-shadow: 0 10px 24px rgba(102, 126, 234, 0.35);
         }
 
         /* Modal Styles */
@@ -377,15 +435,17 @@
         }
 
         .modal-content {
-            background: white;
-            border-radius: 16px;
-            width: 90vw;
-            height: 85vh;
+            background: #fafaff;
+            border-radius: 22px;
+            width: 92vw;
+            height: 86vh;
             max-width: 1200px;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-            animation: slideUp 0.4s ease;
+            box-shadow: 0 35px 75px rgba(5, 15, 80, 0.2);
+            animation: slideUp 0.4s ease both;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            transform: translateY(20px) scale(0.98);
         }
 
         @keyframes slideUp {
@@ -500,7 +560,12 @@
         /* Responsive */
         @media (max-width: 768px) {
             .header-title {
-                font-size: 2.5rem;
+                font-size: 2.4rem;
+            }
+
+            .filter-section {
+                flex-direction: column;
+                align-items: stretch;
             }
 
             .experiments-grid {
@@ -508,8 +573,8 @@
             }
 
             .modal-content {
-                width: 95vw;
-                height: 90vh;
+                width: 96vw;
+                height: 92vh;
             }
 
             .stats {
@@ -545,10 +610,9 @@
         <!-- Header -->
         <header>
             <h1 class="header-title">Web Development Lab</h1>
-            <p class="header-subtitle">Experiments Hub - Interactive Learning Platform</p>
             <div class="stats">
                 <div class="stat-item">
-                    <span class="stat-number">12</span>
+                    <span class="stat-number">13</span>
                     <span class="stat-label">Experiments</span>
                 </div>
                 <div class="stat-item">
@@ -564,18 +628,21 @@
 
         <!-- Filter Section -->
         <div class="filter-section">
-            <button class="filter-btn active" onclick="filterExperiments('all')">
-                <i class="fas fa-th"></i> All
-            </button>
-            <button class="filter-btn" onclick="filterExperiments('html')">
-                <i class="fas fa-code"></i> HTML
-            </button>
-            <button class="filter-btn" onclick="filterExperiments('form')">
-                <i class="fas fa-wpforms"></i> Forms
-            </button>
-            <button class="filter-btn" onclick="filterExperiments('css')">
-                <i class="fas fa-palette"></i> Styling
-            </button>
+            <div>
+                <button class="filter-btn active" onclick="filterExperiments(event, 'all')">
+                    <i class="fas fa-th"></i> All
+                </button>
+                <button class="filter-btn" onclick="filterExperiments(event, 'html')">
+                    <i class="fas fa-code"></i> HTML
+                </button>
+                <button class="filter-btn" onclick="filterExperiments(event, 'form')">
+                    <i class="fas fa-wpforms"></i> Forms
+                </button>
+                <button class="filter-btn" onclick="filterExperiments(event, 'css')">
+                    <i class="fas fa-palette"></i> Styling
+                </button>
+            </div>
+            <input id="searchInput" class="search-input" type="text" placeholder="Search experiments by title or tag..." />
         </div>
 
         <!-- Experiments Grid -->
@@ -614,27 +681,45 @@
         // Experiments Data
         const experiments = [
             {
+                id: 1,
+                title: "HTML Introduction",
+                description: "Start with the fundamentals of HTML and document structure.",
+                file: "Experiment_No.1.html",
+                icon: "fa-globe",
+                tags: ["HTML", "Basics"],
+                category: "html"
+            },
+            {
                 id: 2,
                 title: "HTML Semantics & Basics",
-                description: "Learn HTML semantic elements and basic page structure",
-                file: "Experiment_No2.html",
+                description: "Learn HTML semantic elements and clean page structure.",
+                file: "Experiment_No.2.html",
                 icon: "fa-cube",
-                tags: ["HTML", "Basics"],
+                tags: ["HTML", "Accessibility"],
                 category: "html"
             },
             {
                 id: 3,
                 title: "HTML Document Structure",
-                description: "Understanding proper HTML document structure and hierarchy",
-                file: "Experiment_No3.html",
+                description: "Understanding proper HTML hierarchy and page layout.",
+                file: "Experiment_No.3.html",
                 icon: "fa-layer-group",
                 tags: ["HTML", "Structure"],
                 category: "html"
             },
             {
+                id: 4,
+                title: "HTML Lists Advanced",
+                description: "Build advanced nested lists and semantic list patterns.",
+                file: "Experiment_No.4.html",
+                icon: "fa-list-ul",
+                tags: ["HTML", "Lists"],
+                category: "html"
+            },
+            {
                 id: 5,
                 title: "Image & Graphic Tags",
-                description: "Explore various image and graphic elements in HTML",
+                description: "Explore image, graphic, and multimedia elements in HTML.",
                 file: "Experiment_No.5.html",
                 icon: "fa-image",
                 tags: ["HTML", "Media"],
@@ -643,7 +728,7 @@
             {
                 id: 6,
                 title: "Audio & Video Tags",
-                description: "Working with multimedia elements in HTML5",
+                description: "Working with multimedia elements in modern HTML5.",
                 file: "Experiment_no.6.html",
                 icon: "fa-film",
                 tags: ["HTML", "Media"],
@@ -652,7 +737,7 @@
             {
                 id: 7,
                 title: "HTML Lists",
-                description: "Master ordered, unordered, and description lists",
+                description: "Master ordered, unordered, and description list types.",
                 file: "Experiment_No.7.html",
                 icon: "fa-list",
                 tags: ["HTML", "Lists"],
@@ -661,7 +746,7 @@
             {
                 id: 8,
                 title: "HTML Tables",
-                description: "Create and format data tables with HTML",
+                description: "Create and style structured data tables with HTML.",
                 file: "Experiment_No.8.html",
                 icon: "fa-table",
                 tags: ["HTML", "Tables"],
@@ -670,8 +755,8 @@
             {
                 id: 9,
                 title: "HTML Forms",
-                description: "Build interactive forms with various input types",
-                file: "Experiment no - 9/Registration_form.html",
+                description: "Build interactive forms with inputs, selects, and validation.",
+                file: "Experiment_No.9.html",
                 icon: "fa-wpforms",
                 tags: ["Forms", "Interactive"],
                 category: "form"
@@ -679,37 +764,37 @@
             {
                 id: 10,
                 title: "CSS Professional Resume",
-                description: "Professional resume design with advanced CSS styling",
-                file: "Experiment_No - 10/index.html",
+                description: "Design a polished resume layout using modern CSS styling.",
+                file: "Experiment_No.10/index.html",
                 icon: "fa-file-pdf",
                 tags: ["CSS", "Design"],
                 category: "css"
             },
             {
                 id: 11,
-                title: "CSS Layouts & Flexbox",
-                description: "Master CSS Flexbox and modern layout techniques",
-                file: "Experiment_No - 11/index.html",
-                icon: "fa-columns",
-                tags: ["CSS", "Layout"],
-                category: "css"
+                title: "XML Library Stylesheet",
+                description: "View XML content styled with CSS in a live example.",
+                file: "Experiment_No.11/library.xml",
+                icon: "fa-book",
+                tags: ["XML", "CSS"],
+                category: "html"
             },
             {
                 id: 12,
-                title: "CSS Grid & Responsive",
-                description: "Advanced CSS Grid and responsive design principles",
-                file: "Experiment_No - 12/index.html",
-                icon: "fa-th-large",
-                tags: ["CSS", "Responsive"],
-                category: "css"
+                title: "Inventory XSLT Dashboard",
+                description: "Render a live inventory stock report with XSLT styling.",
+                file: "Experiment_No.12/inventory.xml",
+                icon: "fa-boxes-stacked",
+                tags: ["XML", "XSLT"],
+                category: "html"
             },
             {
-                id: 4,
-                title: "HTML Lists Advanced",
-                description: "Advanced list structures and nesting techniques",
-                file: "Experimente 4/unordered_list.html",
-                icon: "fa-list-ul",
-                tags: ["HTML", "Lists"],
+                id: 13,
+                title: "XML + XSLT Student App",
+                description: "View XML and XSLT data transformation examples.",
+                file: "Experiment_No.13/student_app.xml",
+                icon: "fa-code",
+                tags: ["XML", "XSLT"],
                 category: "html"
             }
         ];
@@ -719,6 +804,8 @@
         const modal = document.getElementById('modal');
         const iframe = document.getElementById('iframe');
         const modalTitle = document.getElementById('modalTitle');
+        const searchInput = document.getElementById('searchInput');
+        let activeCategory = 'all';
 
         // Render Experiments
         function renderExperiments(data) {
@@ -756,18 +843,30 @@
         }
 
         // Filter Experiments
-        function filterExperiments(category) {
+        function filterExperiments(event, category) {
+            activeCategory = category;
             const buttons = document.querySelectorAll('.filter-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-
-            if (category === 'all') {
-                renderExperiments(experiments);
-            } else {
-                const filtered = experiments.filter(exp => exp.category === category);
-                renderExperiments(filtered);
-            }
+            event.currentTarget.classList.add('active');
+            applyFilters();
         }
+
+        function applyFilters() {
+            const searchValue = searchInput.value.trim().toLowerCase();
+            const filteredByCategory = activeCategory === 'all'
+                ? experiments
+                : experiments.filter(exp => exp.category === activeCategory);
+
+            const filtered = filteredByCategory.filter(exp => {
+                return exp.title.toLowerCase().includes(searchValue)
+                    || exp.description.toLowerCase().includes(searchValue)
+                    || exp.tags.some(tag => tag.toLowerCase().includes(searchValue));
+            });
+
+            renderExperiments(filtered);
+        }
+
+        searchInput.addEventListener('input', applyFilters);
 
         // Open Experiment
         function openExperiment(file, title) {
